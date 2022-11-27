@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-
+    public static int threadnum = 168;
     public static int[] data;
     public static int[][] orderData = new int[6][];
     static boolean check = true;
@@ -15,29 +15,41 @@ public class Main {
 
     public static void main(String[] args) {
         read();
-        QucikSort qs = new QucikSort();
-        qs.quicksort(data.clone());
+        QuickSort qs = new QuickSort(data.clone(), 0, data.length - 1, null);
+        qs.sort();
         orderData[0] = qs.OrderData();
-        System.out.print("-------------------快速排序成功---------------\n");
+        System.out.print("-------------------排序成功---------------\n");
         System.out.println("快速排序运行时间" + qs.runtime() + "ms");
 
         MergeSort ms = new MergeSort();
         ms.mergesort(data.clone());
         orderData[1] = ms.OrderData();
-        System.out.print("-------------------归并排序成功--------------\n");
+        System.out.print("-------------------排序成功--------------\n");
         System.out.println("归并排序运行时间" + ms.runtime() + "ms");
 
         EnumerationSort es = new EnumerationSort();
         es.enumerationSort(data.clone());
-        orderData[2] = ms.OrderData();
-        System.out.print("-------------------枚举排序成功--------------\n");
+        orderData[2] = es.OrderData();
+        System.out.print("-------------------排序成功--------------\n");
         System.out.println("枚举排序运行时间" + es.runtime() + "ms");
+
+        ParallelQuickSort pqs = new ParallelQuickSort();
+        pqs.pqsort(data.clone(), 0, data.length - 1);
+        orderData[3] = pqs.OrderData();
+        System.out.print("-------------------排序成功---------------\n");
+        System.out.println("并行快速排序运行时间" + pqs.runtime() + "ms");
+
+        ParallelEnumerationSort pes = new ParallelEnumerationSort();
+        pes.PEsort(data.clone());
+        orderData[4] = pes.OrderData();
+        System.out.print("-------------------排序成功--------------\n");
+        System.out.println("并行枚举排序运行时间" + pes.runtime() + "ms");
 
         if (check) {
             for (int i = 0; i < orderData[0].length; i++)
                 if (orderData[0][i] != orderData[1][i] || orderData[2][i] != orderData[1][i]
                         || orderData[0][i] != orderData[2][i]) {
-                    System.out.printf("不等处" + i + orderData[0][i] + orderData[1][i] + orderData[2][i]);
+                    System.out.printf("不等处:" + i + orderData[0][i] + orderData[1][i] + orderData[2][i] + "\n");
                     error = true;
                 }
             if (!error)
@@ -68,7 +80,7 @@ public class Main {
 
     public static void write() {
         try {
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 5; i++) {
                 BufferedWriter bw = new BufferedWriter(new FileWriter(("order" + (i + 1) + ".txt")));
                 for (int j = 0; j < orderData[i].length; j++)
                     bw.write(orderData[i][j] + " ");

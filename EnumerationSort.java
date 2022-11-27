@@ -7,16 +7,11 @@ public class EnumerationSort {
     public void enumerationSort(int[] data) {
         beign = System.currentTimeMillis();
         arr = data;
-        orderarr = data;
+        orderarr = new int[arr.length];
         for (int i = 0; i < arr.length; i++) {
             sort(i);
         }
         end = System.currentTimeMillis();
-
-    }
-
-    public double runtime() {
-        return (end - beign);
     }
 
     public void sort(int temp) {
@@ -24,7 +19,7 @@ public class EnumerationSort {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] < arr[temp])
                 pos++;
-            else if (arr[i] == arr[temp] && i < pos)
+            else if (arr[i] == arr[temp] && i < temp)
                 pos++;
         }
         orderarr[pos] = arr[temp];
@@ -32,5 +27,9 @@ public class EnumerationSort {
 
     public int[] OrderData() {
         return orderarr;
+    }
+
+    public double runtime() {
+        return (end - beign);
     }
 }

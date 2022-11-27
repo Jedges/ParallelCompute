@@ -25,10 +25,6 @@ public class MergeSort {
         merge(left, mid + 1, right);
     }
 
-    public double runtime() {
-        return (end - beign);
-    }
-
     void merge(int leftPtr, int rightPtr, int rightBound) {
         int mid = rightPtr - 1;
         int[] temp = new int[rightBound - leftPtr + 1];
@@ -74,4 +70,7 @@ public class MergeSort {
         return arr;
     }
 
+    public double runtime() {
+        return (end - beign);
+    }
 }
