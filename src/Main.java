@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -65,7 +66,7 @@ public class Main {
     }
 
     public static void read() {
-        String path = "./random.txt";
+        String path = "../random.txt";
         try {
             File file = new File(path);
             InputStreamReader input = new InputStreamReader(new FileInputStream(file));
@@ -87,7 +88,7 @@ public class Main {
     public static void write() {
         try {
             for (int i = 0; i < 6; i++) {
-                BufferedWriter bw = new BufferedWriter(new FileWriter(("order" + (i + 1) + ".txt")));
+                BufferedWriter bw = new BufferedWriter(new FileWriter(("../output/order" + (i + 1) + ".txt")));
                 for (int j = 0; j < orderData[i].length; j++)
                     bw.write(orderData[i][j] + " ");
                 bw.close();
