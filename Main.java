@@ -45,9 +45,15 @@ public class Main {
         System.out.print("-------------------排序成功--------------\n");
         System.out.println("并行枚举排序运行时间" + pes.runtime() + "ms");
 
+        ParallelMergeSort pms = new ParallelMergeSort(data.clone());
+        pms.sort();
+        orderData[5] = pms.OrderData();
+        System.out.print("-------------------排序成功--------------\n");
+        System.out.println("并行归并排序运行时间" + pms.runtime() + "ms");
+
         if (check) {
             for (int i = 0; i < orderData[0].length; i++)
-                if (orderData[0][i] != orderData[1][i] || orderData[2][i] != orderData[1][i]
+                if (orderData[5][i] != orderData[1][i] || orderData[2][i] != orderData[1][i]
                         || orderData[0][i] != orderData[2][i]) {
                     System.out.printf("不等处:" + i + orderData[0][i] + orderData[1][i] + orderData[2][i] + "\n");
                     error = true;
@@ -80,7 +86,7 @@ public class Main {
 
     public static void write() {
         try {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 6; i++) {
                 BufferedWriter bw = new BufferedWriter(new FileWriter(("order" + (i + 1) + ".txt")));
                 for (int j = 0; j < orderData[i].length; j++)
                     bw.write(orderData[i][j] + " ");

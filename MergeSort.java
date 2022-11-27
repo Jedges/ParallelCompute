@@ -2,13 +2,13 @@
 public class MergeSort {
 
     int[] arr;
-    long beign, end;
+    long time1, time2;
 
     public void mergesort(int[] data) {
-        beign = System.currentTimeMillis();
+        time1 = System.currentTimeMillis();
         arr = data;
         sort(0, arr.length - 1);
-        end = System.currentTimeMillis();
+        time2 = System.currentTimeMillis();
     }
 
     public void sort(int left, int right) {
@@ -71,6 +71,6 @@ public class MergeSort {
     }
 
     public double runtime() {
-        return (end - beign);
+        return (time2 - time1);
     }
 }
