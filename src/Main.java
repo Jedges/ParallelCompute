@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-    public static int threadnum = 168;
+    public static int threadnum = 3000;
     public static int[] data;
     public static int[][] orderData = new int[6][];
     static boolean check = true;
